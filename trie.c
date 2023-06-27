@@ -15,11 +15,13 @@ struct trie_struct {
 };
 
 trie_t *create_trie();
-trie_t *destroy_trie();
-void insert_key(trie_t *t, const char *key, int val);
-int search(trie_t *t, const char *key);
+int destroy_trie(trie_t* t);
+void insert_key(trie_t *t, const char *key);
+int search_key(trie_t *t, const char *key);
 
-int main(int argc, char **argv) {}
+int main(int argc, char **argv) {
+	
+}
 
 trie_t *create_trie() {
 
@@ -33,25 +35,25 @@ trie_t *create_trie() {
 	return t;
 }
 
-void insert_key(trie_t *t, const char *key, int val) {
+void insert_key(trie_t *t, const char *key) {
 	assert(t != NULL && "null value for the trie");
 	int len = strlen(key);
 
 	trie_t *cur_trie = t;
-
+	trie_t *prev_trie = t;
 	for (int i = 0; i < len; i++) {
 		int c = key[i] - 'a';
 		if (!cur_trie->arr[c]) {
 			cur_trie->arr[c] = create_trie();
 		}
-
+		prev_trie = cur_trie;
 		cur_trie = cur_trie->arr[c];
 	}
 
-	cur_trie->val++;
+	prev_trie->val++;
 }
 
-int search(trie_t *t, const char *key) {
+int search_key(trie_t *t, const char *key) {
 	assert(t != NULL && "Null trie given.");
 
 	int len = strlen(key);
@@ -69,4 +71,14 @@ int search(trie_t *t, const char *key) {
 	}
 
 	return prev->val;
+}
+
+int destroy_trie(trie_t* t){
+	for(int i=0; i<26; i++){
+		if(t->arr[i])
+			destroy_trie(t->arr[i]);
+	}
+	free(t);
+	t = NULL;
+	return 0;
 }
