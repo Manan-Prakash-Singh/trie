@@ -20,22 +20,7 @@ void insert_key(trie_t *t, const char *key);
 int search_key(trie_t *t, const char *key);
 
 int main(int argc, char **argv) {
-	trie_t *trie = create_node();
-	insert_key(trie, "manan");
-	insert_key(trie, "prakash");
-	insert_key(trie, "mongose");
-	insert_key(trie, "mono");
-	insert_key(trie, "man");
-	insert_key(trie,"man");
-	insert_key(trie,"manan");
-
-	int count = 0;
-	count = search_key(trie, "mono");
-	printf("Found %d occurrences of %s\n", count, "mono");
-	count = search_key(trie,"man");
-	printf("Found %d occurrences of %s\n", count, "man");
-
-	destroy_trie(trie);
+	
 }
 
 trie_t *create_node() {
