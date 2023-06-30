@@ -30,8 +30,12 @@ void Trie::insert_key(string& key){
 
 bool Trie::search_key(string& key){
     int n = key.length();
-
+    Trie* t = this;
     for(int i=0; i<n; i++){
         int idx = key[i] - 'a';
+        if(!t->children[idx]) return false;
+        t = t->children[idx];
     }
+
+    return t->is_terminal;
 }
