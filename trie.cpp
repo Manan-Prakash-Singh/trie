@@ -27,3 +27,11 @@ void Trie::insert_key(string& key){
 
     t->is_terminal = true;
 }
+
+bool Trie::search_key(string& key){
+    int n = key.length();
+
+    for(int i=0; i<n; i++){
+        int idx = key[i] - 'a';
+    }
+}
