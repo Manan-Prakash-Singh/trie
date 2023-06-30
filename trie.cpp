@@ -9,6 +9,7 @@ class Trie{
         void insert_key(string& key);
         bool search_key(string& key);
         void delete_key(string& key);
+        void print_keys();
     private:
         Trie* children[SIZE];
         bool is_terminal;
@@ -38,4 +39,8 @@ bool Trie::search_key(string& key){
     }
 
     return t->is_terminal;
+}
+
+void Trie::print_keys(){
+
 }
