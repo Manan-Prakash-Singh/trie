@@ -14,3 +14,16 @@ class Trie{
         bool is_terminal;
 };
 
+void Trie::insert_key(string& key){
+    int n = key.length();
+    Trie* t = this;
+    for(int i=0; i<n; i++){
+        int idx = key[i] - 'a';
+        if(!t->children[idx]){
+            t->children[idx] = new Trie();
+        }
+        t = t->children[idx];
+    }
+
+    t->is_terminal = true;
+}
